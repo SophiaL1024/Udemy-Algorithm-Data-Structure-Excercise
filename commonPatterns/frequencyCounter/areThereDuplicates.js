@@ -33,12 +33,8 @@ console.log(areThereDuplicates1('a','b','c','a'));
 console.log('--------------------------');
 //Solution2: use Set
 //Time-O(n) Space-O(n)
-const areThereDuplicates2 = (...args)=>{
-  const set = new Set(args);
-  if (set.size !== args.length) {
-    return true;
-  }
-  return false;
+const areThereDuplicates2 = ()=>{
+  return new Set(arguments).size !== arguments.length;
 };
 
 console.log(areThereDuplicates2(1,2,3));
