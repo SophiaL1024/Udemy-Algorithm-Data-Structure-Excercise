@@ -12,7 +12,7 @@ const findLongestSubstring = (str)=>{
  
   for (let i = 0; i < str.length; i++) {
     let char = str[i];
-    //if some character already exists, move window to the right of this character
+    //if some character already exists, set the start of window to this character's next index
     if (seen[char]) {
       start = Math.max(start, seen[char]);
     }
