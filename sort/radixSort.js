@@ -21,17 +21,19 @@ const mostDigits = (arr)=>{
 const radixSort = (arr)=>{
   const mostDigit = mostDigits(arr);
   for (let k = 0; k <= mostDigit; k++) {
-    const newArray = Array(10).fill([]);
+    //We can't use Array.fill([]) here, because the fill() method changes all elements in an array to a static value. And when the static value is an object value(like an empty array here), it'is pointing to the same reference. So one element change will reflect on all the elements.
+    //Array.from() creates a new, shallow-copied Array instance from an array-like or iterable object(objects with a length property and indexed elements).
+    const digitBuckets = Array.from({length: 10}, () => []);
 
     for (let i = 0; i < arr.length; i++) {
+      let digit = getDigit(arr[i],k);
   
-      newArray[getDigit(arr[i],k)].push(arr[i]);
+      digitBuckets[digit].push(arr[i]);
     }
-    console.log(newArray);
-    // arr = newArray.flat();
-    // arr = [].concat(...newArray);
+    //Only NodeJS version 11 and above support array.flat() method.
+    arr = [].concat(...digitBuckets);
   }
   return arr;
 };
 
-console.log(radixSort([55,412,13,2,19]));
+console.log(radixSort([23,345,5467,12,2345,9852]));
