@@ -96,12 +96,32 @@ class SingleLinkedList {
     } else if (index === this.length) {
       this.push(val);
     } else {
-      let prepNode = this.get(index - 1);\
+      let prepNode = this.get(index - 1);
       newNode.next = prepNode.next;
       prepNode.next = newNode;
       this.length++;
       return newNode;
     }
+  }
+  remove(index) {
+    if (index < 0 || index >= this.length) return false;
+
+    if (index === 0) {
+      this.shift();
+    } else if (index === this.length) {
+      this.pop();
+    } else {
+      const prepNode = this.get(index - 1);
+      const removeNode = prepNode.next;
+      prepNode.next = removeNode.next;
+      removeNode.next = null;
+      this.length--;
+      return removeNode;
+    }
+  }
+  reverse() {
+    this.tail = temp;
+  
   }
 }
 
@@ -120,3 +140,4 @@ console.log(list.unshift(6));
 console.log(list.get(2));
 console.log(list.set(2,0));
 console.log(list.insert(2,100));
+console.log(list.remove(2));
