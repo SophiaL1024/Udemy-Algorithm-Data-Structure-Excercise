@@ -80,6 +80,14 @@ class SingleLinkedList {
     }
     return current;
   }
+  set(index,val) {
+    let current = this.get(index);
+    if (current) {
+      current.val = val;
+      return current;
+    }
+    return 'Not found';
+  }
 
 }
 
@@ -96,3 +104,4 @@ console.log(list.shift());
 console.log(list);
 console.log(list.unshift(6));
 console.log(list.get(2));
+console.log(list.set(2,0));
