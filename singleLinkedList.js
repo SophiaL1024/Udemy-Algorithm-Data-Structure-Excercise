@@ -86,9 +86,23 @@ class SingleLinkedList {
       current.val = val;
       return current;
     }
-    return 'Not found';
+    return false;
   }
-
+  insert(index,val) {
+    if (index < 0 || index >= this.length) return false;
+    const newNode = new Node(val);
+    if (index === 0) {
+      this.unshift(val);
+    } else if (index === this.length) {
+      this.push(val);
+    } else {
+      let prepNode = this.get(index - 1);\
+      newNode.next = prepNode.next;
+      prepNode.next = newNode;
+      this.length++;
+      return newNode;
+    }
+  }
 }
 
 const list = new SingleLinkedList;
@@ -105,3 +119,4 @@ console.log(list);
 console.log(list.unshift(6));
 console.log(list.get(2));
 console.log(list.set(2,0));
+console.log(list.insert(2,100));
