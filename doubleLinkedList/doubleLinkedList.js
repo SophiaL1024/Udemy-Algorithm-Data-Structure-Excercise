@@ -83,7 +83,7 @@ class DoubleLinkedList {
     }
     return current;
   }
-  set(index,val) {
+  set(index, val) {
     const current = this.get(index);
     if (current) {
       current.val = val;
@@ -91,7 +91,7 @@ class DoubleLinkedList {
     }
     return 'Not found';
   }
-  insert(index,val) {
+  insert(index, val) {
     if (index < 0 || index > this.length) return 'invalid index';
     if (index === 0) return this.unshift(val);
     if (index === this.length - 1) return this.push(val);
@@ -120,6 +120,22 @@ class DoubleLinkedList {
     this.length--;
     return this;
   }
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    for (let i = 0; i < this.length; i++) {
+      const prev = node.next;
+      node.next = node.prev;
+      node.prev = prev;
+      node = node.prev;
+    }
+    this.head.prev = null;
+    this.tail.next = null;
+    return this;
+  }
+
 }
 
 const dLL = new DoubleLinkedList;
@@ -132,7 +148,7 @@ console.log(dLL.pop());
 console.log(dLL.unshift(0));
 console.log(dLL.shift(0));
 console.log(dLL.get(2));
-console.log(dLL.set(2,300));
-console.log(dLL.insert(2,123));
+console.log(dLL.set(2, 300));
+console.log(dLL.insert(2, 123));
 console.log(dLL.remove(4));
-
+console.log(dLL.reverse());
