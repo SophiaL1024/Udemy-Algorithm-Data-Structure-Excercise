@@ -17,6 +17,9 @@ class MaxBinaryHeap {
   }
   extractMax(){
     const end=this.value.pop();
+    if(this.value.length===0){
+      return this.value;
+    }
     this.value[0]=end;
     let index=0;
     //bubble down
@@ -41,15 +44,19 @@ class MaxBinaryHeap {
     }
     return this.value;
   }
+  priorityQueue(){
+
+  }
 }
 const heap=new MaxBinaryHeap();
-heap.insert(41)
-heap.insert(39)
-heap.insert(33)
-heap.insert(18)
-heap.insert(27)
-heap.insert(12)
-heap.insert(55)
-console.log(heap)
+heap.insert(41);
+heap.insert(39);
+heap.insert(33);
+heap.insert(18);
+heap.insert(27);
+heap.insert(12);
+heap.insert(55);
+console.log(heap);
 heap.extractMax();
-console.log(heap)
+console.log(heap);
+
